@@ -61,20 +61,14 @@ public class DataBase {
         return this.products;
     }
 
-    public void buyProduct() {
+    public boolean buyProduct(String nameBuy, String quantityBuy) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj nazwę produktu");
-        String nameBuy = scanner.nextLine();
-        System.out.println("Podaj ilość którą chcesz kupić");
-        String quantityBuy = scanner.nextLine();
-
-        for (int i = 0; i < products.length; i++) {
-            if (products[i].getName().equals(nameBuy)) {
-                products[i].setQuantity(products[i].getQuantity() - parseInt(quantityBuy));
-                System.out.println("Kupiono " + quantityBuy + " produktów o nazwie " + nameBuy);
-                break;
+        for (Product currentProduct : this.products) {
+            if (currentProduct.getName().equals(nameBuy) && currentProduct.getQuantity() >= parseInt(quantityBuy)) {
+                currentProduct.setQuantity(currentProduct.getQuantity()-parseInt(quantityBuy));
+                return true;
             }
         }
+        return false;
     }
 }

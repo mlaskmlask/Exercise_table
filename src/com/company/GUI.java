@@ -1,10 +1,9 @@
 package com.company;
 
+import javax.xml.crypto.Data;
 import java.util.Scanner;
 
 public class GUI {
-
-    private static DataBase dataBase = new DataBase();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void mainMenu() {
@@ -13,21 +12,21 @@ public class GUI {
 
         switch (choose) {
             case "1":
-                Candy[] candyList = dataBase.getCandy();
+                Candy[] candyList = DataBase.getInstance().getCandy();
                 for (Candy currentCandy : candyList) {
                     System.out.println(currentCandy);
                 }
                 mainMenu();
                 break;
             case "2":
-                CandyBar[] candyBarList = dataBase.getCandyBar();
+                CandyBar[] candyBarList = DataBase.getInstance().getCandyBar();
                 for (CandyBar currentCandyBar : candyBarList) {
                     System.out.println(currentCandyBar);
                 }
                 mainMenu();
                 break;
             case "3":
-                Product[] productList = dataBase.getAllProducts();
+                Product[] productList = DataBase.getInstance().getAllProducts();
                 for (Product currentProduct : productList) {
                     System.out.println(currentProduct);
                 }
@@ -38,7 +37,7 @@ public class GUI {
                 String nameBuy = scanner.nextLine();
                 System.out.println("Podaj ilość którą chcesz kupić");
                 String quantityBuy = scanner.nextLine();
-                boolean result = dataBase.buyProduct(nameBuy, quantityBuy);
+                boolean result = DataBase.getInstance().buyProduct(nameBuy, quantityBuy);
                 if (result) {
                     System.out.println("Kupiono");
                 } else {

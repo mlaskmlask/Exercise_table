@@ -6,8 +6,9 @@ import static java.lang.Integer.parseInt;
 
 public class DataBase {
     Product[] products = new Product[5];
+    private static final DataBase database = new DataBase();
 
-    public DataBase() {
+    private DataBase() {
         Candy p1 = new Candy(1.20, "Trufla", "truflowy", 10, "okrągły", "brązowy");
         Candy p2 = new Candy(1.30, "Truskawka", "truskawkowy", 20, "owalny", "czerwony");
         Candy p3 = new Candy(1.50, "Arbuz", "arbuzowy", 25, "kwadratowy", "różowy");
@@ -65,10 +66,14 @@ public class DataBase {
 
         for (Product currentProduct : this.products) {
             if (currentProduct.getName().equals(nameBuy) && currentProduct.getQuantity() >= parseInt(quantityBuy)) {
-                currentProduct.setQuantity(currentProduct.getQuantity()-parseInt(quantityBuy));
+                currentProduct.setQuantity(currentProduct.getQuantity() - parseInt(quantityBuy));
                 return true;
             }
         }
         return false;
+    }
+
+    public static DataBase getInstance() {
+        return database;
     }
 }

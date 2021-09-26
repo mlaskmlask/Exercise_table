@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.xml.crypto.Data;
 import java.util.Scanner;
 
 public class GUI {
